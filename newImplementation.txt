@@ -1,3 +1,4 @@
 status code implementation - using http-status-code
 orm implementation - using sequelize
-
+env file added - using dotenv we can access data
+file uploading through predefined components - we directly upload files and will get filename from server and then we upload the data along with filename

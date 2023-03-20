@@ -2,20 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter,Route,Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeModule from "./homeModule.js";
-import MoviesModule from "./moviesModule.js"
+import MoviesModule from "./videos/videoModule.js"
+import AddVideoModule from './videos/addVideoModule';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-      
-      <BrowserRouter>
-        <Routes>
-            <Route exact path="/" element={<HomeModule/>}/>
-            <Route exact path="/movies" element={<MoviesModule/>}/>            
-        </Routes>
-      </BrowserRouter>
-      
+
+  <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<HomeModule />} />
+      <Route path="/movies" element={<MoviesModule />} />
+      <Route path="/addVideo" element={<AddVideoModule />} />
+    </Routes>
+  </BrowserRouter>
+
+
 );
 
 // If you want to start measuring performance in your app, pass a function

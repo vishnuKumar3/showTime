@@ -2,20 +2,20 @@
 	{
 		"id":1,
 		"name":"S05",
-		"path":"../../../vs/NOTA-2018.mp4",
+		"path":"videos/a.mp4",
 		"poster":"images/wednesday.jpeg"
 	},
 	{
 		"id":2,
 		"name":"S06",
-		"path":"videos/d.mp4",
+		"path":"videos/a.mp4",
 		"poster":"images/varisu.jpeg"
 
 	},
 	{
 		"id":3,
 		"name":"S07",
-		"path":"videos/c.mp4",
+		"path":"videos/a.mp4",
 		"poster":"images/wednesday.jpeg"
 
 	},
@@ -29,7 +29,7 @@
 	{
 		"id":5,
 		"name":"S06",
-		"path":"videos/d.mp4",
+		"path":"videos/a.mp4",
 		"poster":"images/wednesday.jpeg"
 
 	}	
