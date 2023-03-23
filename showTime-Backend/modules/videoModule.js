@@ -7,18 +7,18 @@ const fs = require("fs")
 module.exports = router
 
 router.post("/addVideo", async function (req, res) {
-    let uploadedPosterData = req.body.poster[0].response
-    let uploadedVideoData = req.body.video[0].response
-    const videoData = {
-        "name": req.body.name,
-        "genre": req.body.genre,
-        "category": req.body.category,
-        "posterPath": uploadedPosterData["fileName"],
-        "videoPath": uploadedVideoData["fileName"],
-        "description": req.body.description,
-        "shortSummary": req.body.shortSummary
-    }
     try {
+        let uploadedPosterData = req.body.poster[0].response
+        let uploadedVideoData = req.body.video[0].response
+        const videoData = {
+            "name": req.body.name,
+            "genre": req.body.genre,
+            "category": req.body.category,
+            "posterPath": uploadedPosterData["fileName"],
+            "videoPath": uploadedVideoData["fileName"],
+            "description": req.body.description,
+            "shortSummary": req.body.shortSummary
+        }
         const videoInstance = await video.create(videoData)
         if (videoInstance instanceof video) {
             return res.status(StatusCodes.OK).json({ "data": "data added successfully" })

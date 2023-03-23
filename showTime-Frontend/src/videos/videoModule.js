@@ -1,6 +1,4 @@
 import React, { useState, useReducer, useEffect } from "react";
-import '../App.css';
-import "../css/global.css"
 import Card from "./videoCard.js";
 import axios from "axios";
 

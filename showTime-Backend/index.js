@@ -6,6 +6,7 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const multer = require("multer")
 const videoModule = require("./modules/videoModule.js")
+const userModule = require("./modules/userModule.js")
 require("dotenv").config()
 
 const corsOptions = {
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(multer({ dest: "./uploadedFiles" }).any())
 app.use("/video", videoModule)
+app.use("/user", userModule)
 
 
 app.listen(8080, async function () {

@@ -1,15 +1,15 @@
 const { DataTypes } = require("sequelize")
 const sequelize = require("../dbConnection.js")
-const product=sequelize.define("product",
+const product = sequelize.define("product",
     {
         productName: {
             type: DataTypes.TEXT,
-            allowNull:false
+            allowNull: false
         },
         price: {
             type: DataTypes.INTEGER,
-            allowNull:false
+            allowNull: false
         }
     }
 )
-module.exports=product
+module.exports = product
