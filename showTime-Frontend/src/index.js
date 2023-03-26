@@ -8,6 +8,9 @@ import HomeModule from "./homeModule.js";
 import MoviesModule from "./videos/videoModule.js"
 import AddVideoModule from './videos/addVideoModule';
 import AddUserModule from './users/addUserModule';
+import SignInUserModule from "./users/signInUser";
+import DashboardModule from './dashboard/dashboardModule';
+import VideoDisplayModule from './videos/videoDisplayModule';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -15,9 +18,12 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route exact path="/" element={<HomeModule />} />
-      <Route path="/movies" element={<MoviesModule />} />
+      <Route path="/dashboard" element={<DashboardModule />} />
+      <Route path="/videoDisplay/*" element={<VideoDisplayModule />} />
+      <Route path="/video" element={<MoviesModule />} />
       <Route path="/addVideo" element={<AddVideoModule />} />
       <Route path="/addUser" element={<AddUserModule />} />
+      <Route path="/signIn" element={<SignInUserModule />} />
     </Routes>
   </BrowserRouter>
 

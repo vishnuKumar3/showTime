@@ -20,7 +20,6 @@ router.post("/addUser", async function (req, res) {
     try {
         const data = req.body
         data.password = bcrypt.hashSync(data.password, 10)
-        console.log(data)
         const userData = await user.create(data)
         if (userData instanceof user) {
             return res.status(StatusCodes.OK).json({ "data": "user added successfully" })
@@ -40,7 +39,7 @@ router.post("/addUser", async function (req, res) {
 router.post("/verifyUser", async function (req, res) {
     const userData = await userExisted(req.body.email)
     if (!userData) {
-        return res.status(StatusCodes.UNAUTHORIZED).json({ "data": "user unauthorized" })
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ "data": "user unauthorized" })
     }
     else if (bcrypt.compareSync(req.body.password, userData.password)) {
         return res.status(StatusCodes.OK).json({ "data": "user verified successfully" })

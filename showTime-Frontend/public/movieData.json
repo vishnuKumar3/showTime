@@ -1,36 +1,38 @@
 [
 	{
-		"id":1,
-		"name":"S05",
-		"path":"videos/a.mp4",
-		"poster":"images/wednesday.jpeg"
+		"name": "vikram",
+		"genre": [
+			"action",
+			"thriller"
+		],
+		"category": "movie",
+		"posterPath": "varisu.jpeg",
+		"videoPath": "a.mp4",
+		"description": "the movie is about the killer",
+		"shortSummary": "this is short summary"
 	},
 	{
-		"id":2,
-		"name":"S06",
-		"path":"videos/a.mp4",
-		"poster":"images/varisu.jpeg"
-
+		"name": "vikram",
+		"genre": [
+			"action",
+			"thriller"
+		],
+		"category": "movie",
+		"posterPath": "wednesday.jpeg",
+		"videoPath": "a.mp4",
+		"description": "the movie is about the killer",
+		"shortSummary": "this is short summary"
 	},
 	{
-		"id":3,
-		"name":"S07",
-		"path":"videos/a.mp4",
-		"poster":"images/wednesday.jpeg"
-
-	},
-	{
-		"id":4,
-		"name":"S05",
-		"path":"videos/a.mp4",
-		"poster":"images/wednesday.jpeg"
-
-	},
-	{
-		"id":5,
-		"name":"S06",
-		"path":"videos/a.mp4",
-		"poster":"images/wednesday.jpeg"
-
-	}	
+		"name": "superFamily",
+		"genre": [
+			"action",
+			"thriller"
+		],
+		"category": "tvshow",
+		"posterPath": "varisu.jpeg",
+		"videoPath": "a.mp4",
+		"description": "the movie is about the killer",
+		"shortSummary": "this is short summary"
+	}
 ]

@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const video = require("../models/videoModel.js")
 const { StatusCodes } = require("http-status-codes")
+const { Op } = require("sequelize")
 const fs = require("fs")
 
 module.exports = router
@@ -65,5 +66,10 @@ router.post("/uploadVideo", function (req, res) {
 })
 
 router.get("/getAllVideos", async function (req, res) {
-    res.status(StatusCodes.OK).json(await video.findAll())
+    if (!req.query.category) req.query.category = "";
+    res.status(StatusCodes.OK).json(await video.findAll({ where: { category: { [Op.like]: `%${req.query.category}%` } } }))
+})
+
+router.get("/getVideo", async function (req, res) {
+    res.status(StatusCodes.OK).json(await video.findOne({ where: { id: req.query.id } }))
 })

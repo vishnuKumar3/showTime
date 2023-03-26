@@ -1,0 +1,16 @@
+.navigationBar {
+    border: 1px solid transparent;
+    padding: 5px;
+}
+
+.dashboardLink {
+    color: white;
+    padding: 10px 20px;
+    transition: 0.5s;
+}
+
+.dashboardLink:hover {
+    border-radius: 10px;
+    background: #E50914;
+    transition: 0.5s;
+}

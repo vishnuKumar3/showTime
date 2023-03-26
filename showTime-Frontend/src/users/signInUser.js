@@ -1,5 +1,4 @@
 /*{
-    "userName": "vishnu kumar",
     "email": "nvk@gmail.com",
     "password": "1234"
 }*/
@@ -18,23 +17,28 @@ const formItemLayout = {
 const onFinish = async (values) => {
     await axios({
         method: "post",
-        url: "http://localhost:8080/user/addUser",
+        url: "http://localhost:8080/user/verifyUser",
         headers: { "Content-Type": "application/json" },
         data: values
     }).then((ret) => {
-        if (ret.status == 200) message.success(ret.data.data, 2)
-        else if (ret.status == 206) message.warning(ret.data.data, 2)
-        else message.error(ret.data.data, 2)
+        console.log(ret)
+        if (ret.status == 200) {
+            message.success(ret.data.data, 2)
+            setTimeout(() => {
+                window.open("/dashboard", "_self")
+            }, 300)
+        }
+        else { message.error(ret.data.data, 2) }
     }).catch((ret) => {
         message.error(ret.response.data.data, 2)
     })
 }
 
-export default function AddUserModule() {
+export default function SignInUser() {
     return (
-        <div class="flex flex-col items-center justify-center h-full bg-black">
+        <div className="flex flex-col items-center justify-center h-full bg-black">
             <Card
-                title="SignUp"
+                title="SignIn"
                 className="w-2/5"
                 hoverable={true}
                 headStyle={{ fontSize: "30px", color: "#e50914" }}
@@ -43,21 +47,6 @@ export default function AddUserModule() {
                     onFinish={onFinish}
                     className="w-full border-0 mt-5"
                 >
-
-                    <Form.Item
-                        {...formItemLayout}
-                        name="userName"
-                        label="Name"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your name',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="Please enter your name" />
-                    </Form.Item>
-
                     <Form.Item
                         {...formItemLayout}
                         name="email"

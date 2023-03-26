@@ -52,7 +52,7 @@
 }
 
 #product {
-    padding: 100px 0px;
+    padding: 100px 0px 0px 0px;
     display: flex;
     border: 1px solid transparent;
     justify-content: space-between;
@@ -90,4 +90,13 @@
     75% {
         opacity: 0;
     }
+}
+
+.exploreArrow {
+    transition: 0.5s;
+}
+
+.exploreButton:hover .exploreArrow {
+    margin-left: 30px;
+    transition: 0.5s;
 }
