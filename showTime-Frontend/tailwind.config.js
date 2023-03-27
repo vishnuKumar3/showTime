@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         appRedColor: "#E50914"
       },
+      borderWidth: {
+        '1': '1px'
+      }
     },
   },
   plugins: [],

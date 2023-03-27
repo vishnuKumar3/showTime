@@ -76,7 +76,7 @@ export default function SignInUser() {
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ span: 12, offset: 10 }}>
-                        <Button type="primary" className="bg-appRedColor rounded-md text-white" htmlType="submit" danger>
+                        <Button type="primary" style={{ background: "#E50914" }} className="rounded-md text-white" htmlType="submit" danger>
                             Submit
                         </Button>
                     </Form.Item>
