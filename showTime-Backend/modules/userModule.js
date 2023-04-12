@@ -42,7 +42,7 @@ router.post("/verifyUser", async function (req, res) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ "data": "user unauthorized" })
     }
     else if (bcrypt.compareSync(req.body.password, userData.password)) {
-        return res.status(StatusCodes.OK).json({ "data": "user verified successfully" })
+        return res.status(StatusCodes.OK).json({ "data": "user verified successfully", "id": userData["id"], "role": "USER" })
     }
     else {
         return res.status(StatusCodes.UNAUTHORIZED).json({ "data": "user unauthorized" })

@@ -15,6 +15,7 @@ const bodyParser = require("body-parser")
 const multer = require("multer")
 const videoModule = require("./modules/videoModule.js")
 const userModule = require("./modules/userModule.js")
+const adminModule = require("./modules/adminModule")
 require("dotenv").config()
 
 const corsOptions = {
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(multer({ dest: "./uploadedFiles" }).any())
 app.use("/video", videoModule)
 app.use("/user", userModule)
+app.use("/admin", adminModule)
 
 io.on("connection", function (socket) {
     socket.on("message", function (msg) {

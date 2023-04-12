@@ -14,7 +14,7 @@
 import { Form, Input, Select, Button, Upload, Card, message } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import { useCookies } from 'react-cookie';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 const { Option } = Select;
 
@@ -35,21 +35,33 @@ const formItemLayout = {
 };
 
 const onFinish = async (values) => {
-  await axios({
-    method: "post",
-    url: "http://localhost:8080/video/addVideo",
-    headers: { "Content-Type": "application/json" },
-    data: values
-  }).then((ret) => {
-    if (ret.status == 200) message.success(ret.data.data, 2)
-    else if (ret.status == 500) message.error(ret.data.data, 2)
-    else if (ret.status == 206) message.warning(ret.data.data, 2)
-  })
+  try {
+    const queryParams = new URLSearchParams(window.location.search)
+    const id = queryParams.get("id");
+    values["id"] = parseInt(id)
+    await axios({
+      method: "post",
+      url: "http://localhost:8080/video/updateVideo",
+      headers: { "Content-Type": "application/json" },
+      data: values
+    }).then((ret) => {
+      if (ret.status == 200) message.success(ret.data.data, 2)
+      else if (ret.status == 500) message.error(ret.data.data, 2)
+      else if (ret.status == 206) message.warning(ret.data.data, 2)
+      setTimeout(() => {
+        window.open("/video?category=movie", "_self")
+      }, 2000)
+    })
+  }
+  catch (err) {
+    message.error("internal server error", 1)
+  }
 }
 
 
-export default function AddVideoModule() {
+export default function UpdateVideoModule() {
   const [cookies] = useCookies()
+  const [videoData, handleVideoData] = useState({})
 
   useEffect(() => {
     const cookieData = cookies.authorization
@@ -61,18 +73,54 @@ export default function AddVideoModule() {
     else {
       window.open("/signIn", "_self")
     }
-  })
+    async function getVideo() {
+      try {
+        const queryParams = new URLSearchParams(window.location.search)
+        const id = queryParams.get("id");
+        const res = await axios.get(`http://localhost:8080/video/getVideo?id=${id}`);
+        res.data.genre = JSON.parse(res.data.genre)
+        handleVideoData(res.data)
+        console.log(res.data)
+      }
+      catch (err) {
+        window.open("/video?category=movie", "_self")
+      }
+    }
+    getVideo()
+  }, [])
 
   return (
     <div class="flex flex-col items-center justify-center h-full bg-black">
       <Card
-        title="Add Video"
+        title="Update Video"
         className="w-1/2"
         hoverable={true}
         headStyle={{ fontSize: "30px", color: "#e50914" }}
       >
         <Form
           onFinish={onFinish}
+          fields={[
+            {
+              "name": ["name"],
+              "value": videoData.name
+            },
+            {
+              "name": ["genre"],
+              "value": videoData.genre
+            },
+            {
+              "name": ["category"],
+              "value": videoData.category
+            },
+            {
+              "name": "description",
+              "value": videoData.description
+            },
+            {
+              "name": "shortSummary",
+              "value": videoData.shortSummary
+            }
+          ]}
           className="w-full border-0 mt-5"
         >
 

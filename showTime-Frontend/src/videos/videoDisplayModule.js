@@ -3,11 +3,20 @@ import "../css/videoDisplay.css"
 import { message, Button } from "antd"
 import DashboardModule from "../dashboard/dashboardModule";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 import { socket } from "../socket.js"
 
+const updateVideo = () => {
+    const queryParams = new URLSearchParams(window.location.search)
+    const id = queryParams.get("id");
+    window.open(`/updateVideo?id=${id}`, "_self")
+}
+
 export default function VideoDisplayModule() {
+    const [cookies] = useCookies()
     const [videoData, handleVideoData] = useState({})
     const [loading, handleLoading] = useState(false);
+    const adminRoles = ["ADMIN", "SUPER_ADMIN"]
 
     function handleButtonClick() {
         handleLoading(true)
@@ -38,6 +47,16 @@ export default function VideoDisplayModule() {
     }
 
     useEffect(() => {
+        const cookieData = cookies.authorization
+        const roles = ["USER", "ADMIN", "SUPER_ADMIN"]
+        if (cookieData) {
+            if (!cookieData.id || !(roles.includes(cookieData.role))) {
+                window.open("/signIn", "_self")
+            }
+        }
+        else {
+            window.open("/signIn", "_self")
+        }
         socket.on("connect", function () {
             console.log("connected");
         })
@@ -68,6 +87,13 @@ export default function VideoDisplayModule() {
             <DashboardModule />
             {Object.keys(videoData).length > 0 ?
                 <div className="translate-y-24 pl-8 pr-8 bg-black pb-10">
+                    {adminRoles.includes(cookies.authorization.role) ?
+                        <div className="w-full flex justify-end mb-10">
+                            <Button onClick={updateVideo} type="primary" style={{ background: "#E50914" }} className="pb-8 text-xl rounded-md text-white" danger>updateVideoDetails</Button>
+                        </div> :
+                        <div>
+                        </div>
+                    }
                     <video poster={"images/" + videoData.posterPath} className="w-full videoContainer" controls>
                         <source src={"videos/" + videoData.videoPath}></source>
                     </video>

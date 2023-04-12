@@ -34,6 +34,32 @@ router.post("/addVideo", async function (req, res) {
 
 })
 
+router.post("/updateVideo", async function (req, res) {
+    try {
+        let videoData = await video.findOne({ where: { id: req.body.id } })
+        let uploadedPosterData = req.body.poster[0].response
+        let uploadedVideoData = req.body.video[0].response
+        videoData.name = req.body.name
+        videoData.genre = req.body.genre
+        videoData.category = req.body.category
+        videoData.posterPath = uploadedPosterData["fileName"]
+        videoData.videoPath = uploadedVideoData["fileName"]
+        videoData.description = req.body.description
+        videoData.shortSummary = req.body.shortSummary
+        await videoData.save()
+        if (videoData instanceof video) {
+            return res.status(StatusCodes.OK).json({ "data": "data updated successfully" })
+        }
+        else {
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ "data": "internal server error" })
+        }
+    }
+    catch (err) {
+        console.log(err)
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ "data": "internal server error" })
+    }
+})
+
 router.post("/uploadVideo", function (req, res) {
     /*
       {
