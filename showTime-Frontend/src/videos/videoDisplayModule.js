@@ -31,15 +31,26 @@ export default function VideoDisplayModule() {
 
     const sendMessage = () => {
         var msg = window.prompt("enter message:");
-        socket.emit("message", msg)
-        handleButtonClick()
-        document.getElementsByClassName("messageBox")[0].innerHTML += `<div class="w-full flex justify-end pb-2"><div class="bg-white text-black rounded-md pl-3 pr-3">${msg}</div></p>`;
-        addMessageToChatBox()
+        if (msg.trim() != "") {
+            socket.emit("message", msg)
+            handleButtonClick()
+            document.getElementsByClassName("messageBox")[0].innerHTML += `<div class="w-full flex justify-end pb-2"><div class="bg-white text-black rounded-md pl-3 pr-3">${msg}</div></p>`;
+            addMessageToChatBox()
+        }
+        else {
+            message.warning("empty messages are unable to send", 2)
+        }
     }
     const createRoom = () => {
         var room = window.prompt("enter room no:")
-        socket.emit("createRoom", room)
-        message.success("room created successfully", 1)
+        if (room.trim() != "") {
+            socket.emit("createRoom", room)
+            message.success("room created successfully", 1)
+        }
+        else {
+            message.warning("room with empty number is not supported", 2)
+
+        }
     }
     const joinRoom = () => {
         var room = window.prompt("enter room no:")

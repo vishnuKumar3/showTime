@@ -90,13 +90,14 @@ export default function SignInUser() {
                     <Form.Item name="isAdmin" valuePropName="checked" wrapperCol={{ offset: 10, span: 12 }}>
                         <Checkbox>Admin?</Checkbox>
                     </Form.Item>
-
                     <Form.Item wrapperCol={{ span: 12, offset: 10 }}>
                         <Button type="primary" style={{ background: "#E50914" }} className="rounded-md text-white" htmlType="submit" danger>
                             Submit
                         </Button>
                     </Form.Item>
                 </Form>
+                <div className="w-full flex justify-center underline text-appRedColor"><a href="/addUser">Register?</a></div>
+
             </Card>
         </div>
     );
