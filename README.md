@@ -10,6 +10,7 @@
 <ul>
 	<li>Nodejs</li>
 	<li>Expressjs</li>
+	<li>Sequelize for ORM implementation</li>
 	<li>Socket.io for chat functionality</li>
 	<li>Mysql for Database</li>
 </ul>
