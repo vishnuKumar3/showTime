@@ -1,2 +1,2 @@
 # ShowTime-An OTT platform
-![Homepage](readmeFiles/home.png)
+<img src="readmeFiles/home.png" style="width:100px;height:100px;">
